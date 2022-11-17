@@ -7,3 +7,6 @@
 # End of https://www.toptal.com/developers/gitignore/api/ansible
 
 venv/
+
+# Local inventory ignore, copy from inventory.yml.dist
+inventory.yml
