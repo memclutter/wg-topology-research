@@ -14,3 +14,5 @@ A little research on WireGuard topologies. For my learning and for fun.
 Each topology folder contains a README.md file, an ansible inventory file, and a playbook. 
 
 The README.md file contains a link to the source where this topology is described, what requirements and how many resources are needed and instructions on how to deploy all this through ansible.
+
+- [01. Point to Point](01-point-to-point/)
