@@ -2,6 +2,10 @@
 
 Automating Deployment Point to Point WireGuard Configuration. [About Topology Point to Point](https://www.procustodibus.com/blog/2020/11/wireguard-point-to-point-config/).
 
+![diagram](https://www.procustodibus.com/images/blog/wireguard-topologies/point-to-point-complex.svg)
+
+> diagram from https://www.procustodibus.com/blog/2020/11/wireguard-point-to-point-config/
+
 ## Requirements
 
 Target nodes:
