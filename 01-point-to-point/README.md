@@ -44,3 +44,9 @@ Local machine:
 6. Down topology via ansible playbook
 
         ansible-playbook -i inventory.yml down.yml
+
+## TODO
+
+- [ ] Install webserver with simple page on Endpoint B.
+- [ ] EXTRA: CONFIGURE FIREWALL ON ENDPOINT A
+- [ ] EXTRA: CONFIGURE FIREWALL ON ENDPOINT B
