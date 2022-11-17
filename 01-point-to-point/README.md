@@ -15,4 +15,28 @@ Local machine:
 
 ## Instruction
 
-@TODO write instructions
+1. Activate python environment and install if need requirements 
+        
+        python3 -m venv ../venv
+        source ../venv/bin/activate
+        pip install -r ../requirements.txt
+
+2. Clone and edit inventory.yml
+
+        cp inventory.yml.dist inventory.yml
+        editor inventory.yml
+
+3. Up topology via ansible playbook
+
+        ansible-playbook -i inventory.yml up.yml
+
+4. Check if all corrects
+
+        ansible -i inventory.yml peer_a -m shell -a "ping -c 5 {{ hostvars['peer_b']['wg_address'].split('/')[0] }}"
+        ansible -i inventory.yml peer_b -m shell -a "ping -c 5 {{ hostvars['peer_a']['wg_address'].split('/')[0] }}"
+
+5. Play with topology if need
+
+6. Down topology via ansible playbook
+
+        ansible-playbook -i inventory.yml down.yml
