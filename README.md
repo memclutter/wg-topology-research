@@ -16,3 +16,6 @@ Each topology folder contains a README.md file, an ansible inventory file, and a
 The README.md file contains a link to the source where this topology is described, what requirements and how many resources are needed and instructions on how to deploy all this through ansible.
 
 1. [Point to Point](01-point-to-point/)
+2. [Hub and Spoke](02-hub-and-spoke/)
+3. [Point to Site](03-point-to-site/)
+4. [Site to Site](04-site-to-site/)
