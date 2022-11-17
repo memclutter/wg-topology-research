@@ -2,7 +2,7 @@
 
 Automating Deployment Hub and Spoke WireGuard Configuration. [About Topology Hub and Spoke](https://www.procustodibus.com/blog/2020/11/wireguard-hub-and-spoke-config/).
 
-![diagram](https://www.procustodibus.com/images/blog/wireguard-topologies/hub-and-spoke-complex.svg)
+![diagram](assets/diagram.svg)
 
 > diagram from https://www.procustodibus.com/blog/2020/11/wireguard-point-to-point-config/
 
