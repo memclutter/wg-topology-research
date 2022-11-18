@@ -1,8 +1,0 @@
-[Interface]
-PrivateKey = {{ hostvars['peer_b']['private_key']['content'] | b64decode | trim }}
-Address = {{ hostvars['peer_b']['wg_address'] }}
-ListenPort = {{ hostvars['peer_b']['wg_listen_port'] }}
-
-[Peer]
-PublicKey = {{ hostvars['peer_a']['public_key']['content'] | b64decode | trim }}
-AllowedIPs = {{ hostvars['peer_a']['wg_address'] }}

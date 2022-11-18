@@ -1,12 +1,12 @@
 all:
   hosts:
-    peer_a:
-      ansible_host: <IP_PEER_A>
+    endpoint_a:
+      ansible_host: <IP_ENDPOINT_A>
       ansible_user: root
       wg_address: 10.0.0.1/32
       wg_listen_port: 51821
-    peer_b:
-      ansible_host: <IP_PEER_B>
+    endpoint_b:
+      ansible_host: <IP_ENDPOINT_B>
       ansible_user: root
       wg_address: 10.0.0.2/32
       wg_listen_port: 51822

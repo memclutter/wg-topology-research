@@ -10,8 +10,8 @@ Automating Deployment Point to Point WireGuard Configuration. [About Topology Po
 
 Target nodes:
 
-- VPS with ssh access, >= 1CPU, 512Mb (tested on Ubuntu 22.04, 64bit)
-- VPS with ssh access, >= 1CPU, 512Mb (tested on Ubuntu 22.04, 64bit)
+- VPS with ssh access, >= 1CPU, >= 512Mb (tested on Ubuntu 22.04, 64bit)
+- VPS with ssh access, >= 1CPU, >= 512Mb (tested on Ubuntu 22.04, 64bit)
 
 Local machine:
 
@@ -36,8 +36,8 @@ Local machine:
 
 4. Check if all corrects
 
-        ansible -i inventory.yml peer_a -m shell -a "ping -c 5 {{ hostvars['peer_b']['wg_address'].split('/')[0] }}"
-        ansible -i inventory.yml peer_b -m shell -a "ping -c 5 {{ hostvars['peer_a']['wg_address'].split('/')[0] }}"
+        ansible -i inventory.yml endpoint_a -m shell -a "ping -c 5 {{ hostvars['endpoint_b']['wg_address'].split('/')[0] }}"
+        ansible -i inventory.yml endpoint_b -m shell -a "ping -c 5 {{ hostvars['endpoint_a']['wg_address'].split('/')[0] }}"
 
 5. Play with topology if need
 
