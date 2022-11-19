@@ -1,0 +1,11 @@
+[Interface]
+PrivateKey = {{ hostvars['endpoint_a']['private_key']['content'] | b64decode | trim }}
+Address = {{ hostvars['endpoint_a']['wg_address'] }}
+ListenPort = {{ hostvars['endpoint_a']['wg_listen_port'] }}
+
+# Remote settings for Host C
+[Peer]
+PublicKey = {{ hostvars['host_c']['public_key']['content'] | b64decode | trim }}
+Endpoint = {{ hostvars['host_c']['ansible_host'] }}:{{ hostvars['host_c']['wg_listen_port'] }}
+AllowedIPs = {{ hostvars['endpoint_a']['wg_allowed_ip'] }}
+

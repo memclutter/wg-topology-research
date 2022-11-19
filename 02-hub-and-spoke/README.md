@@ -4,13 +4,15 @@ Automating Deployment Hub and Spoke WireGuard Configuration. [About Topology Hub
 
 ![diagram](assets/diagram.svg)
 
-> diagram from https://www.procustodibus.com/blog/2020/11/wireguard-point-to-point-config/
+> diagram from https://www.procustodibus.com/blog/2020/11/wireguard-hub-and-spoke-config/
 
 ## Requirements
 
 Target nodes:
 
-@TODO write target node requirements
+- VPS with ssh access, >= 1CPU, >= 512Mb (tested on Ubuntu 22.04, 64bit)
+- VPS with ssh access, >= 1CPU, >= 512Mb (tested on Ubuntu 22.04, 64bit)
+- VPS with ssh access, >= 1CPU, >= 512Mb (tested on Ubuntu 22.04, 64bit)
 
 Local machine:
 
@@ -35,7 +37,8 @@ Local machine:
 
 4. Check if all corrects
 
-@TODO write instructions
+        ansible -i inventory.yml endpoint_a -m shell -a "ping -c 5 {{ hostvars['endpoint_b']['wg_address'].split('/')[0] }}"
+        ansible -i inventory.yml endpoint_b -m shell -a "ping -c 5 {{ hostvars['endpoint_a']['wg_address'].split('/')[0] }}"
 
 5. Play with topology if need
 

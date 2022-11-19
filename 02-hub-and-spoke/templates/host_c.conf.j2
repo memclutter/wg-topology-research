@@ -1,0 +1,16 @@
+[Interface]
+PrivateKey = {{ hostvars['host_c']['private_key']['content'] | b64decode | trim }}
+Address = {{ hostvars['host_c']['wg_address'] }}
+ListenPort = {{ hostvars['host_c']['wg_listen_port'] }}
+
+PreUp = sysctl -w net.ipv4.ip_forward=1
+
+# Remote config for Endpoint A
+[Peer]
+PublicKey = {{ hostvars['endpoint_a']['public_key']['content'] | b64decode | trim }}
+AllowedIPs = {{ hostvars['endpoint_a']['wg_address'] }}
+
+# Remote config for Endpoint B
+[Peer]
+PublicKey = {{ hostvars['endpoint_b']['public_key']['content'] | b64decode | trim }}
+AllowedIPs = {{ hostvars['endpoint_b']['wg_address'] }}

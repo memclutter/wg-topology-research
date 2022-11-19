@@ -1,0 +1,44 @@
+---
+- name: Uninstall wg-quick service
+  hosts: all
+  tasks:
+    - name: Stop service
+      ansible.builtin.systemd:
+        name: wg-quick@wg0.service
+        state: stopped
+        enabled: no
+      register: wg_quick_stop
+      failed_when: "wg_quick_stop is failed and 'Could not find the requested service' not in wg_quick_stop.msg"
+    
+- name: Delete configuration
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Remove wg0.conf
+      ansible.builtin.file:
+        path: /etc/wireguard/wg0.conf
+        state: absent
+    - name: Remove keypairs - public
+      ansible.builtin.file:
+        path: /etc/wireguard/public.key
+        state: absent
+    - name: Remove keypairs - private
+      ansible.builtin.file:
+        path: /etc/wireguard/private.key
+        state: absent
+
+- name: Uninstall wireguard
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Uninstall wireguard on debian based OS
+      ansible.builtin.apt:
+        pkg: 
+          - wireguard
+          - wireguard-tools
+          - wg
+          - wg-quick
+        state: absent
+        purge: yes
+        autoremove: yes
+      when: ansible_distribution|lower in ["ubuntu", "debian"]

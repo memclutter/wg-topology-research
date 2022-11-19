@@ -1,0 +1,59 @@
+---
+- name: Install wireguard
+  hosts: all
+  tasks:
+    - name: Upgrade apt
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: yes
+      when: ansible_distribution|lower in ["ubuntu", "debian"]
+    - name: Install wireguard on debian based OS
+      ansible.builtin.apt:
+        pkg: wireguard
+      when: ansible_distribution|lower in ["ubuntu", "debian"]
+    
+- name: Generate keypairs
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Check keypairs already exists
+      ansible.builtin.stat:
+        path: /etc/wireguard/public.key
+      register: keypairs
+    - name: Generate keypairs
+      ansible.builtin.shell: |
+        wg genkey > /etc/wireguard/private.key
+        wg pubkey < /etc/wireguard/private.key > /etc/wireguard/public.key
+      when: not keypairs.stat.exists
+    - name: Store publickey
+      ansible.builtin.slurp:
+        src: /etc/wireguard/public.key
+      register: public_key
+    - name: Store privatekey
+      ansible.builtin.slurp:
+        src: /etc/wireguard/private.key
+      register: private_key
+
+- name: Configure peers
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Create config
+      ansible.builtin.template:
+        src: 'templates/{{ inventory_hostname }}.conf.j2'
+        dest: /etc/wireguard/wg0.conf
+        owner: '{{ ansible_user }}'
+        mode: '0600'
+
+- name: Setup wg-quick service
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Enable service
+      ansible.builtin.systemd:
+        name: wg-quick@wg0.service
+        enabled: yes
+    - name: Start service
+      ansible.builtin.systemd:
+        name: wg-quick@wg0.service
+        state: started

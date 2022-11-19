@@ -1,0 +1,19 @@
+all:
+  hosts:
+    endpoint_a:
+      ansible_host: <IP_ENDPOINT_A>
+      ansible_user: root
+      wg_address: 10.0.0.1/32
+      wg_listen_port: 51821
+      wg_allowed_ip: 10.0.0.0/24
+    endpoint_b:
+      ansible_host: <IP_ENDPOINT_B>
+      ansible_user: root
+      wg_address: 10.0.0.2/32
+      wg_listen_port: 51822
+      wg_allowed_ip: 10.0.0.0/24
+    host_c:
+      ansible_host: <IP_HOST_C>
+      ansible_user: root
+      wg_address: 10.0.0.3/32
+      wg_listen_port: 51823
